@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teo Car - Lavagem e Estética Automotiva a Domicílio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --bg-dark: #000000;        
+            --surface-color: #050505;  
+            --text-main: #ffffff;      
+            --text-muted: #b3b3b3;     
+            --accent: #007bff;         
+            --accent-dark: #0056b3;    
+            --accent-glow: rgba(0, 123, 255, 0.25);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- Header / Navbar --- */
+        .navbar-glass {
+            background: transparent; 
+            border-bottom: 1px solid transparent; 
+            transition: all 0.3s ease;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--text-main) !important;
+            letter-spacing: -1px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            color: var(--text-main) !important;
+            opacity: 0.7;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--accent) !important;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent);
+            color: var(--text-main);
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+            color: var(--text-main);
+        }
+
+        /* --- Hero Section Atualizada --- */
+         .hero-section {
+            position: relative;
+            padding-top: 140px; /* Reduzido levemente para subir o conteúdo no mobile */
+            padding-bottom: 60px;
+            min-height: 75vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1; 
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/imgs/heroImgMobile.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,1) 100%);
+            z-index: -1;
+        }
+
+        @media (min-width: 768px) {
+            .hero-bg-image {
+                background-image: url('/imgs/heroImgDesk.png');
+                background-attachment: fixed; 
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 123, 255, 0.4);
+            background: rgba(0, 123, 255, 0.15);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-title {
+            font-size: 2.5rem; /* Menor no mobile para encaixar melhor */
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            color: var(--text-main);
+            letter-spacing: -1.5px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+        }
+
+        .hero-title .highlight {
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem; /* Mais enxuto no mobile */
+            color: rgba(255,255,255,0.85);
+            max-width: 550px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 300;
+            line-height: 1.5;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Ajustes Hero Mobile First */
+        @media (min-width: 768px) {
+            .hero-title { font-size: 4.5rem; }
+            .hero-subtitle { font-size: 1.25rem; margin-bottom: 3.5rem; }
+            .hero-section { padding-top: 160px; padding-bottom: 80px; }
+        }
+
+        .section-ba {
+            padding: 6rem 0;
+            background-color: var(--surface-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .ba-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            border-radius: 16px; 
+            overflow: hidden;
+            aspect-ratio: 4/3; 
+            box-shadow: 0 30px 70px rgba(0,0,0,0.9);
+            border: 1px solid rgba(0, 123, 255, 0.15); 
+        }
+
+        @media (min-width: 768px) {
+            .ba-wrapper { aspect-ratio: 16/9; }
+        }
+
+        .ba-image-after, .ba-image-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .ba-image-before {
+            z-index: 2;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+            transition: clip-path 0.05s linear; 
+        }
+
+        .ba-slider-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: ew-resize;
+            z-index: 4;
+            margin: 0;
+        }
+
+        .ba-slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px; 
+            height: 100%;
+            background: rgba(255,255,255,0.8); 
+            z-index: 3;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .ba-slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: var(--accent); 
+            color: var(--text-main);
+            border-radius: 50%;
+            z-index: 3;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+            border: 4px solid var(--surface-color);
+        }
+
+        .ba-slider-handle i {
+            font-size: 18px;
+        }
+
+        .ba-labels {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 25px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .ba-label {
+            background: rgba(0,0,0,0.5);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top py-3 navbar-glass">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-car-front-fill me-2 fs-4" style="color: var(--accent);"></i>Teo Car
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-1 text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link px-3" href="#antes-depois">Resultados</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#servicos">Serviços</a></li>
+                </ul>
+                <div class="d-flex mt-3 mt-lg-0">
+                    <a class="btn btn-primary-custom w-100 rounded-pill" href="https://wa.me/5545999659885?text=Olá, quero agendar um serviço para o meu carro!" target="_blank">
+                        <i class="bi bi-whatsapp me-2"></i>Agendar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-bg-image"></div>
+        <div class="hero-bg-overlay"></div>
+        
+        <div class="container px-4">
+            <div class="hero-badge">
+                <i class="bi bi-geo-alt-fill me-2"></i> Atendimento em Domicílio
+            </div>
+            
+            <h1 class="hero-title">
+                O brilho do seu carro renovado.<br>
+                <span class="highlight">Sem sair de casa.</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Polimento, vitrificação e lavagem detalhada direto na sua garagem. Esqueça as filas, nós levamos o resultado até você.
+            </p>
+            
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="https://wa.me/5500000000000?text=Olá, quero agendar um serviço para o meu carro!" class="btn btn-primary-custom px-5 py-3 rounded-pill" target="_blank">
+                    Fazer Orçamento
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="antes-depois" class="section-ba">
+        <div class="container">
+            <div class="text-center mb-5 pb-3">
+                <h2 class="fw-bold fs-1 mb-3 text-white">Transformação <span style="color: var(--accent);">Real</span></h2>
+                <p class="text-muted max-w-600 mx-auto">Arraste o controle para ver o poder do nosso polimento técnico, remoção de chuva ácida e vitrificação na renovação da pintura.</p>
+            </div>
+
+            <div class="ba-wrapper">
+                
+                <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80&w=1200" alt="Carro Depois polimento" class="ba-image-after">
+                
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=1200" alt="Carro Antes polimento" class="ba-image-before" id="ba-image-before">
+
+                <div class="ba-slider-line" id="ba-line"></div>
+                <div class="ba-slider-handle" id="ba-handle">
+                    <i class="bi bi-arrow-left-right"></i>
+                </div>
+
+                <div class="ba-labels">
+                    <span class="ba-label">Antes</span>
+                    <span class="ba-label">Depois</span>
+                </div>
+
+                <input type="range" min="0" max="100" value="50" class="ba-slider-input" id="ba-slider" aria-label="Controle de comparação antes e depois">
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Slider Antes/Depois
+            const slider = document.getElementById('ba-slider');
+            const imageBefore = document.getElementById('ba-image-before');
+            const handle = document.getElementById('ba-handle');
+            const line = document.getElementById('ba-line');
+
+            function updateSlider(value) {
+                imageBefore.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
+                handle.style.left = `${value}%`;
+                line.style.left = `${value}%`;
+            }
+
+            slider.addEventListener('input', (e) => {
+                updateSlider(e.target.value);
+            });
+
+            // Navbar Efeito ao rolar
+            const navbar = document.querySelector('.navbar-glass');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                    navbar.style.backdropFilter = 'blur(12px)';
+                    navbar.style.webkitBackdropFilter = 'blur(12px)';
+                    navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
+                } else {
+                    navbar.style.background = 'transparent';
+                    navbar.style.backdropFilter = 'none';
+                    navbar.style.webkitBackdropFilter = 'none';
+                    navbar.style.borderBottom = '1px solid transparent';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
